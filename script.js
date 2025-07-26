@@ -1,28 +1,57 @@
 function getComputerChoice(){
 
-    let compChoice = Math.random()*100
+    let compChoice = Math.floor(Math.random()*3)
 
-    if (compChoice<=33){
-        return "Rock"
+    if (compChoice == 0){
+        return "rock"
     }
 
-    else if (compChoice<=66){
-        return "Papper"
+    else if (compChoice == 1){
+        return "paper"
     }
 
-    else return "Scissors"
+    else return "scissors"
 }
 
 function getHumanChoice(){
     return prompt("Enter your choice: ")
 }
 
-function playGame(comp, hum){
-    console.log('Points for Computer:', comp)
-    console.log('Points for Human: ', hum)
-    if (comp == hum)
+let computerScore = 0;
+let humanScore = 0;
+
+function playRound(humanChoice, computerChoice){
+    if (humanChoice === null || humanChoice === "")
+        return
+    else{
+        if (computerChoice === humanChoice)
+            console.log(`${humanChoice} VS ${computerChoice} -> Draw`);
+        else if ((computerChoice == 'rock' && humanChoice=='scissors') ||
+                (computerChoice == 'paper' && humanChoice=='rock') ||
+                (computerChoice == 'scissors' && humanChoice=='paper')){
+                console.log(`${humanChoice} VS ${computerChoice} -> Computer wins this round`);
+                computerScore++
+        }
+        else{
+            console.log(`${humanChoice} VS ${computerChoice} -> You win this round`);
+            humanScore++
+        }
+    }
+}
+
+
+function playGame(){
+    for (let i=0; i<5; i++){
+        let humanInput = getHumanChoice()
+        let humanSelection = humanInput ? humanInput.toLowerCase(): null;
+        let computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+    }
+    
+    if (computerScore == humanScore)
         console.log("Both are equalized!")
-    else if (comp > hum){
+    else if (computerScore > humanScore){
         console.log("Computer Won! You lost")
         alert("Computer Won! You lost.")
     }
@@ -30,29 +59,7 @@ function playGame(comp, hum){
         console.log("You Won! Computer lost")
         alert("You Won! Computer lost")
     }
-}
-let comp=0, hum=0;
-
-for (let i=0; i<5; i++){
-    let computer = getComputerChoice()
-    let human = getHumanChoice()
-    if (human == null || human == "")
-        continue
-    else{
-        if (computer == human)
-            console.log(`${human} VS ${computer} -> Draw`);
-        else if ((computer == 'Rock' && human=='Scissors') ||
-                (computer == 'Papper' && human=='Rock') ||
-                (computer == 'Scissors' && human=='Papper')){
-                console.log(`${human} VS ${computer} -> Computer wins this round`);
-                comp++
-        }
-        else{
-            console.log(`${human} VS ${computer} -> You win this round`);
-            hum++
-        }
-    }
-    
+    console.log(`Final Score -> You: ${humanScore}  Computer: ${computerScore}`);
 }
 
-playGame(comp, hum)
+playGame();
