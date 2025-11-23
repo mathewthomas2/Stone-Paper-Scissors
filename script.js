@@ -27,15 +27,15 @@ const heading = document.querySelector("h2")
 
 function playRound(humanChoice, computerChoice){
     if (computerChoice === humanChoice)
-        choices.textContent = `${humanChoice} VS ${computerChoice} ➜ Draw`
+        choices.innerHTML = `<strong>${humanChoice}</strong> vs <strong>${computerChoice}</strong> ➜ Draw`
     else if ((computerChoice == 'Rock' &&humanChoice=='Scissors') ||
         (computerChoice == 'Paper' && humanChoice=='Rock') ||
         (computerChoice == 'Scissors' && humanChoice=='Paper')){
-        choices.textContent = `${humanChoice} VS ${computerChoice} ➜ Computer wins`
+        choices.innerHTML = `<strong>${humanChoice}</strong> vs <strong>${computerChoice}</strong> ➜ Computer wins`
         computerScore++
     }
     else{
-        choices.textContent = `${humanChoice} VS ${computerChoice} ➜ You won`
+        choices.innerHTML = `<strong>${humanChoice}</strong> vs <strong>${computerChoice}</strong> ➜ You won`
         humanScore++
     }
     score.textContent = `Score ➜ You: ${humanScore} | Computer: ${computerScore}`;
