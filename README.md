@@ -1,6 +1,6 @@
 # Stone Paper Scissors 
 
-A simple Rock-Paper-Scissors game built using HTML, CSS, and JavaScript.
+A simple Rock - Paper - Scissors game built using HTML, CSS, and JavaScript.
 
 ## 🔗 Live Preview
 
